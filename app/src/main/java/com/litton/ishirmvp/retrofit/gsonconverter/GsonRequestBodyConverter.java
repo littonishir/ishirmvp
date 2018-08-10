@@ -1,4 +1,4 @@
-package com.litton.ishirmvp.retrofit;
+package com.litton.ishirmvp.retrofit.gsonconverter;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;

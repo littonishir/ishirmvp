@@ -9,7 +9,6 @@ import java.util.Map;
 /**
  * * Created by littonishir on 2018/8/8.
  */
-// 写一堆文档，一些事例，做一些讲解
 public class UserInfoPresenter extends BasePresenter<UserInfoContract.UserInfoView, UserInfoModel> implements UserInfoContract.UserInfoPresenter {
     // 是直接 new 还是？一个 Presneter 对应多个 Model 怎么解决？ new 很正常 ，尽量分离（六大基本原则）
     // 一般情况下是 1 个 Presneter 对应一个 Model

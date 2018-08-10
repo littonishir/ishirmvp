@@ -3,12 +3,13 @@ package com.litton.ishirmvp.retrofit;
 import android.util.Log;
 
 import com.litton.ishirmvp.BuildConfig;
+import com.litton.ishirmvp.bean.Result;
+import com.litton.ishirmvp.retrofit.gsonconverter.GsonDConverterFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Emitter;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -65,6 +66,11 @@ public class RetrofitHelper {
         return builder.build();
     }
 
+    /**
+     * 待到Rxjava大成回来优化
+     * @param <T>
+     * @return
+     */
     public static <T> Observable.Transformer<Result<T>, T> transformer() {
         return new Observable.Transformer<Result<T>, T>() {
             @Override
@@ -73,19 +79,18 @@ public class RetrofitHelper {
                     @Override
                     public Observable<T> call(Result<T> tResult) {
                         // 解析不同的情况返回
-                        if(tResult.isOk()){
+//                        if(tResult.isOk()){
                             // 返回成功
                             return createObservable(tResult.data);
-                        }else {
+//                        }else {
                             // 返回失败
-                            return Observable.error(new ErrorHandle.ServiceError("",tResult.getData()));
-                        }
+//                            return Observable.error(new ErrorHandle.ServiceError("",tResult.data.toString()));
+//                        }
                     }
                 }).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
             }
         };
     }
-
 
     private static <T> Observable<T> createObservable(final T data) {
         return Observable.create(new Action1<Emitter<T>>() {

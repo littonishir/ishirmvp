@@ -1,8 +1,9 @@
-package com.litton.ishirmvp.retrofit;
+package com.litton.ishirmvp.retrofit.gsonconverter;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.litton.ishirmvp.bean.BaseResult;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -27,17 +28,16 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         String response = value.string();
         try {
             BaseResult baseResult = gson.fromJson(response, BaseResult.class);
-            int status = baseResult.getStatus();
-            if (status == 1) {
+//            boolean ok = ;
+//            int status = baseResult.getStatus();
+            if (baseResult.isOk()) {
                 //nor
                 return gson.fromJson(response, type);
             } else {
                 //err
-//                JsonObject jsonObject = (JsonObject) new JsonParser().parse(response);
-//                String data = jsonObject.get("data").toString();
-//                throw new IOException(data);
-                return gson.fromJson(response, type);
-
+                JsonObject jsonObject = (JsonObject) new JsonParser().parse(response);
+                String data = jsonObject.get("data").toString();
+                throw new IOException(data);
             }
 
         } finally {

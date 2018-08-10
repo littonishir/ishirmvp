@@ -16,14 +16,14 @@ public  abstract class BaseSubscriber<T> extends Subscriber<T> {
     public void onError(Throwable e) {
         // e ：网络异常，解析异常，结果处理过程中异常
         e.printStackTrace();
-        if(e instanceof ErrorHandle.ServiceError){
-            ErrorHandle.ServiceError serviceError = (ErrorHandle.ServiceError) e;
-            onError("",serviceError.getMessage());
-        }else {
+//        if(e instanceof ErrorHandle.ServiceError){
+//            ErrorHandle.ServiceError serviceError = (ErrorHandle.ServiceError) e;
+//            onError("",serviceError.getMessage());
+//        }else {
             // 自己处理
             String message = e.getMessage();
             onError("",message);
 
-        }
+//        }
     }
 }

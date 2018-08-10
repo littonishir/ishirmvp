@@ -1,4 +1,4 @@
-package com.litton.ishirmvp.retrofit;
+package com.litton.ishirmvp.retrofit.gsonconverter;
 
 /**
  * Created by littonishir on 2018/8/8.

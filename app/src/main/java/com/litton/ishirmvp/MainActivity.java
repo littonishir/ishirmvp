@@ -1,6 +1,7 @@
 package com.litton.ishirmvp;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.litton.ishirmvp.base.BaseActivity;
 import com.litton.ishirmvp.bean.LoginBean;
@@ -30,7 +31,8 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements Use
 
     @Override
     public void onError(String errorCode, String errorMsg) {
-        mUserInfoTv.setText(errorMsg);
+//        mUserInfoTv.setText(errorMsg);
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -52,16 +54,8 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements Use
 
     @Override
     protected void initData() {
-//        Class<? extends UserInfoPresenter> aClass = mPresenter1.getClass();
-//        UserInfoPresenter presenter = getPresenter();
-//        Map<String,String> map = new HashMap<>();
-//        map.put("username","wjd");
-//        map.put("password","1");
-
         Map<String, Object> map = new HashMap<>();
-
-//        map.put("phone”,””);
-        map.put("phone","188112261328");
+        map.put("phone","188112266138");
         map.put("password", "F6470D658E1BAA72159935E17FCA9D22");
         map.put("termType", "900001");
         map.put("deviceId", "0f0931d253ddd604");
@@ -72,7 +66,7 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements Use
 
     @Override
     protected void initView() {
-        mUserInfoTv = (TextView) findViewById(R.id.user_info_tv);
+        mUserInfoTv = findViewById(R.id.user_info_tv);
     }
 
     @Override
